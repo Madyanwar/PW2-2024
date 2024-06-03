@@ -23,7 +23,7 @@
 
         @include('admin.partials.sidebar')
 
-        @yield('pasien')
+        @yield('content')
         
         @include('admin.partials.footer')
 

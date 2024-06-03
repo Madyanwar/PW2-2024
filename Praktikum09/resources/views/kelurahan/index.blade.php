@@ -40,41 +40,31 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <h1 class="my-4">Daftar Pasien</h1>
-                    <a href="{{ route('pasiens.create')}}" class="btn btn-primary">Tambah Pasien</a>
+                    <h1 class="my-4">Daftar Kelurahan</h1>
+                    <a href="{{ route('kelurahans.create')}}" class="btn btn-primary">Tambah kelurahan</a>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
                                 <th>ID</th>
-                                <th>Kode</th>
-                                <th>Nama</th>
-                                <th>Tempat Lahir</th>
-                                <th>Tanggal Lahir</th>
-                                <th>Gender</th>
-                                <th>Email</th>
-                                <th>Alamat</th>
+                                <th>Nama Kelurahan</th>
+                                <th>Kecamatan ID</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pasien as $psn)
+                            @foreach ($kelurahan as $kel)
                                 <tr>
-                                    <td>{{ $psn->id }}</td>
-                                    <td>{{ $psn->kode }}</td>
-                                    <td>{{ $psn->nama }}</td>
-                                    <td>{{ $psn->tmp_lahir }}</td>
-                                    <td>{{ $psn->tgl_lahir }}</td>
-                                    <td>{{ $psn->gender }}</td>
-                                    <td>{{ $psn->email }}</td>
-                                    <td>{{ $psn->alamat }}</td>
+                                    <td>{{ $kel->id }}</td>
+                                    <td>{{ $kel->nama }}</td>
+                                    <td>{{ $kel->kecamatan_id }}</td>
                                     <td>
-                                        <a href="{{ route('pasiens.show', $psn->id) }}" class="btn btn-info">Read</a>
-                                        <form action="{{ route('pasiens.destroy', $psn->id) }}" method="POST" style="display: inline;">
+                                        <a href="{{ route('kelurahans.show', $kel->id) }}" class="btn btn-info">Read</a>
+                                        <form action="{{ route('kelurahans.destroy', $kel->id) }}" method="POST" style="display: inline;">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this pasien?')">Delete</button>
                                         </form>
-                                        <a href="{{ route('pasiens.edit', $psn->id) }}" class="btn btn-warning btn-sm">Update</a>
+                                        <a href="{{ route('kelurahans.edit', $kel->id) }}" class="btn btn-warning btn-sm">Update</a>
                                     </td>
                                 </tr>
                             @endforeach
