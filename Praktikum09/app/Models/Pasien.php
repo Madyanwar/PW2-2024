@@ -18,6 +18,9 @@ class Pasien extends Model
         'gender',
         'email',
         'alamat',
+        '_token',
 
     ];
+    //non aktif timestap
+    public $timestamps = false;
 }

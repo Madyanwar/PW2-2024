@@ -41,6 +41,7 @@
                 </div>
                 <div class="card-body">
                     <h1 class="my-4">Daftar Pasien</h1>
+                    <a href="{{ route('pasiens.create')}}" class="btn btn-primary">Tambah Pasien</a>
                     <table class="table table-bordered">
                         <thead>
                             <tr>
@@ -52,19 +53,29 @@
                                 <th>Gender</th>
                                 <th>Email</th>
                                 <th>Alamat</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pasien as $data_pasien_loop)
+                            @foreach ($pasien as $psn)
                                 <tr>
-                                    <td>{{ $data_pasien_loop->id }}</td>
-                                    <td>{{ $data_pasien_loop->kode }}</td>
-                                    <td>{{ $data_pasien_loop->nama }}</td>
-                                    <td>{{ $data_pasien_loop->tmp_lahir }}</td>
-                                    <td>{{ $data_pasien_loop->tgl_lahir }}</td>
-                                    <td>{{ $data_pasien_loop->gender }}</td>
-                                    <td>{{ $data_pasien_loop->email }}</td>
-                                    <td>{{ $data_pasien_loop->alamat }}</td>
+                                    <td>{{ $psn->id }}</td>
+                                    <td>{{ $psn->kode }}</td>
+                                    <td>{{ $psn->nama }}</td>
+                                    <td>{{ $psn->tmp_lahir }}</td>
+                                    <td>{{ $psn->tgl_lahir }}</td>
+                                    <td>{{ $psn->gender }}</td>
+                                    <td>{{ $psn->email }}</td>
+                                    <td>{{ $psn->alamat }}</td>
+                                    <td>
+                                        <a href="{{ route('pasiens.show', $psn->id) }}" class="btn btn-info">Read</a>
+                                        <form action="{{ route('pasiens.destroy', $psn->id) }}" method="POST" style="display: inline;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this pasien?')">Delete</button>
+                                        </form>
+                                        <a href="{{ route('pasiens.edit', $psn->id) }}" class="btn btn-warning btn-sm">Update</a>
+                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
